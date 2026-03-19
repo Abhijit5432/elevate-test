@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elevate - Job Portal & Prep Hub</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- Styles -->
+    <link rel="stylesheet" href="index.css">
+    <meta name="description" content="Premium job portal and preparation website">
+</head>
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <header class="navbar glass">
+            <div class="container flex-row align-center space-between">
+                <a href="#home" class="brand" data-link="home">
+                    <i class="ph ph-rocket-launch"></i> Elevate
+                </a>
+                <nav class="nav-links">
+                    <a href="#home" data-link="home" class="nav-item">Home</a>
+                    <a href="#jobs" data-link="jobs" class="nav-item">Jobs</a>
+                    <a href="#prep" data-link="prep" class="nav-item">Prep Hub</a>
+                    <a href="#dsa" data-link="dsa" class="nav-item">DSA Tracker</a>
+                    <a href="#companies" data-link="companies" class="nav-item">Companies</a>
+                </nav>
+                <div class="auth-buttons flex-row align-center gap-1" id="nav-auth-section">
+                    <button id="theme-btn" class="btn btn-outline" style="padding: 0.5rem; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;"><i class="ph ph-moon" id="theme-icon" style="font-size: 1.25rem;"></i></button>
+                    <button class="btn btn-outline" onclick="app.openAuthModal('login')">Log In</button>
+                    <button class="btn btn-primary" onclick="app.openAuthModal('signup')">Sign Up</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dynamic Content Router Outlet -->
+        <main id="main-content" class="container">
+            <!-- JavaScript will populate this -->
+            <div style="text-align: center; margin-top: 100px;">
+                <i class="ph ph-spinner ph-spin" style="font-size: 2rem; color: var(--accent-primary);"></i>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container flex-row space-between align-center">
+                <p>&copy; 2026 Elevate. Elevate your career.</p>
+                <div class="socials flex-row gap-2">
+                    <i class="ph ph-github-logo"></i>
+                    <i class="ph ph-twitter-logo"></i>
+                    <i class="ph ph-linkedin-logo"></i>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Auth Modal Overlay -->
+    <div id="auth-overlay" class="modal-overlay hidden">
+        <div class="modal glass-card animate-fade">
+            <div class="flex-row space-between align-center mb-4">
+                <h2 id="auth-title">Welcome Back</h2>
+                <button class="btn-icon" onclick="app.closeAuthModal()" style="font-size: 1.5rem; color: var(--text-secondary); background: transparent; border: none; cursor: pointer; transition: color 0.2s;"><i class="ph ph-x"></i></button>
+            </div>
+            
+            <button class="btn btn-outline w-full mb-2 flex-row align-center justify-center gap-2" style="font-size: 1rem; border-color: var(--border-color);" onclick="app.mockLogin()">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" style="width: 20px;" alt="Google">
+                Continue with Google
+            </button>
+            <button class="btn btn-outline w-full mb-4 flex-row align-center justify-center gap-2" style="font-size: 1rem; border-color: var(--border-color);" onclick="app.mockLogin()">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoft/microsoft-original.svg" style="width: 20px;" alt="Microsoft">
+                Continue with Microsoft
+            </button>
+
+            <div class="flex-row align-center gap-2 mb-4" style="color: var(--text-secondary); font-size: 0.9rem;">
+                <hr style="flex-grow: 1; border: none; border-top: 1px solid var(--border-color);">
+                or continue with email
+                <hr style="flex-grow: 1; border: none; border-top: 1px solid var(--border-color);">
+            </div>
+
+            <form onsubmit="event.preventDefault(); app.mockLogin();" class="flex-col gap-3">
+                <div id="name-field-container" class="hidden">
+                    <label class="text-sm mb-1" style="display:block; font-weight:600; color:var(--text-primary);">Full Name</label>
+                    <input type="text" class="search-input" placeholder="John Doe" style="padding: 0.8rem;">
+                </div>
+                <div>
+                    <label class="text-sm mb-1" style="display:block; font-weight:600; color:var(--text-primary);">Email Address</label>
+                    <input type="email" class="search-input" placeholder="john@example.com" required style="padding: 0.8rem;">
+                </div>
+                <div>
+                    <label class="text-sm mb-1" style="display:block; font-weight:600; color:var(--text-primary);">Password</label>
+                    <input type="password" class="search-input" placeholder="••••••••" required style="padding: 0.8rem;">
+                </div>
+                <button type="submit" class="btn btn-primary w-full mt-2" id="auth-submit-btn">Log In</button>
+            </form>
+            <div class="text-center mt-4 text-sm text-secondary">
+                <span id="auth-switch-text">Don't have an account?</span> 
+                <a href="#" onclick="app.switchAuthMode(); return false;" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;" id="auth-switch-link">Sign Up</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="main.js"></script>
+</body>
+</html>
